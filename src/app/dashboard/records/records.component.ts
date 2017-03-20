@@ -6,14 +6,14 @@ import {DatatableComponent} from '@swimlane/ngx-datatable';
 
 declare var $: any;
 @Component({
-  selector: 'app-new-users',
-  templateUrl: './new-users.component.html',
-  styleUrls: ['./new-users.component.css'],
+  selector: 'records',
+  templateUrl: './records.component.html',
+  styleUrls: ['./records.component.css'],
   providers: [
     DataService
   ]
 })
-export class NewUsersComponent implements OnInit {
+export class RecordsComponent implements OnInit {
 
   totalMonth: number;
   totalHour: number;
@@ -21,7 +21,7 @@ export class NewUsersComponent implements OnInit {
   logs = [];
   rows = [];
   temp = [];
-  temp2 = []
+  temp2 = [];
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(private dataService: DataService) {
@@ -56,9 +56,7 @@ export class NewUsersComponent implements OnInit {
     $(document).ready(function(){
       $('ul.tabs').tabs();
     });
-
-        
-       
+     
   }
 
 
@@ -74,14 +72,6 @@ export class NewUsersComponent implements OnInit {
       data => this.totalHour = data,
       error => console.log(error)
     );
-  }
-
-  fillLogs(data){
-    for (var i in data){
-      this.logs.push([i,data[i]]);
-      console.log(data[i]);
-    }
-
   }
 
    updateFilter(event) {
@@ -113,8 +103,4 @@ export class NewUsersComponent implements OnInit {
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
-
-
-
-
 }

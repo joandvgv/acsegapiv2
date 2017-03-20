@@ -1,3 +1,6 @@
- .slider .slides {
-    height: 500px;
+.tabs .tab a {
+    color: #212121 !important ;
 }
+
+.tabs .indicator { background-color: #FFC107 !important; }
+

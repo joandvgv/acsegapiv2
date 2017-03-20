@@ -1,6 +1,3 @@
-.tabs .tab a {
-    color: #212121 !important ;
+ .slider .slides {
+    height: 500px;
 }
-
-.tabs .indicator { background-color: #FFC107 !important; }
-

@@ -130,13 +130,17 @@ app.get('/api/onCampus/', function (req, res) {
     });
 });
 
-app.get('/api/logs/persona', function (req, res) {
-    LogsP.find((err, LogsP) => {
+app.get('/api/onCampus/count', function (req, res) {
+    var query = {enCampus:true };
+    People.count(query, function(err, People) {
         if (err) {
-            res.json({info: 'error during find Users', error: err});
+            res.json({info: 'Error finding people on campus', error: err});
         };
-        res.json(LogsP);
-
+        if (People) {
+            res.json(People);
+        } else {
+            res.json({info: 'No people on campus with status:'});
+        }
     });
 });
 
@@ -150,7 +154,15 @@ app.get('/api/logs/persona', function (req, res) {
     });
 });
 
+app.get('/api/logs/persona', function (req, res) {
+    LogsP.find((err, LogsP) => {
+        if (err) {
+            res.json({info: 'error during find Users', error: err});
+        };
+        res.json(LogsP);
 
+    });
+});
 
 
 app.get('/api/logs/vehiculo', function (req, res) {
@@ -158,66 +170,41 @@ app.get('/api/logs/vehiculo', function (req, res) {
         if (err) {
             res.json({info: 'error during find Users', error: err});
         };
-        res.json({info: 'Users found successfully', data: Logs});
+        res.json(Logs);
     });
 });
 
-  app.get('/api/statistics/psede', function(req, res) {
-   date = new Date().getMonth();
-   var month;
-   var datePlusOne: number; 
-   datePlusOne= +date + 1;
-   month = ""+datePlusOne; 
-   var query = {month: month};
-    LogsP.count(query,function(err, count) {
+  app.get('/api/statistics/psede/:sede', function(req, res) {
+   var query = {sede: req.params.sede, enCampus: true};
+    People.count(query,function(err, count) {
       if(err) return console.error(err);
       res.json(count);
     });
   });
 
-
-    app.get('/api/statistics/pcarrera', function(req, res) {
-   date = new Date().getMonth();
-   var month;
-   var datePlusOne: number; 
-   datePlusOne= +date + 1;
-   month = ""+datePlusOne; 
-   var query = {month: month};
-    LogsP.count(query,function(err, count) {
+   app.get('/api/statistics/pcarrerap/:carrera', function(req, res) {
+   var query = {carrera: req.params.carrera, enCampus: true};
+    People.count(query,function(err, count) {
       if(err) return console.error(err);
-      res.json(count);
+      var query2= {enCampus:true};
+      People.count(query2,function(error,total){
+         if(error) return console.error(err);
+         res.json(Math.round((count/total)*100) + "%");
     });
-  });
-
-     app.get('/api/statistics/vcarrera', function(req, res) {
-   date = new Date().getMonth();
-   var month;
-   var datePlusOne: number; 
-   datePlusOne= +date + 1;
-   month = ""+datePlusOne; 
-   var query = {month: month};
-    LogsP.count(query,function(err, count) {
-      if(err) return console.error(err);
-      res.json(count);
     });
-  });
-
-          app.get('/api/statistics/vsede', function(req, res) {
-   date = new Date().getMonth();
-   var month;
-   var datePlusOne: number; 
-   datePlusOne= +date + 1;
-   month = ""+datePlusOne; 
-   var query = {month: month};
-    LogsP.count(query,function(err, count) {
-      if(err) return console.error(err);
-      res.json(count);
-    });
+    
+          
   });
 
 
 
-
+   app.get('/api/statistics/pcarrera/:carrera', function(req, res) {
+   var query = {carrera: req.params.carrera, enCampus:true};
+    People.count(query,function(err, count) {
+      if(err) return console.error(err);
+      res.json(count);
+    });
+  });
 
 
 
@@ -233,7 +220,6 @@ app.get('/api/logs/vehiculo', function (req, res) {
             });
         } 
         else if (usr) {
-            //16b check if the received password matches with the data store
             if (usr.password != request.body.password) {
                 response.json({
                     authsuccess: false,
@@ -247,8 +233,6 @@ app.get('/api/logs/vehiculo', function (req, res) {
                 });
                 console.log('Authentication is done successfully.....');
             }
-    
-
 
             }
 

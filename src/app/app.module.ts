@@ -9,7 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { WeatherService } from './weather/weather.service';
 import { DataService } from './services/data.service';
 import { ToastComponent } from './shared/toast/toast.component';
-import {NewUsersModule} from './home/new-users/new-users.module'
+import {RecordsModule} from './dashboard/records/records.module'
 
 
 

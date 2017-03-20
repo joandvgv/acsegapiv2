@@ -44,7 +44,7 @@ login() {
         this.dataService.login(this.loginForm.value.username, this.loginForm.value.password)
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                 //   this.router.navigate([this.returnUrl]);
                 },
                 error => {
                     this.loading = false;

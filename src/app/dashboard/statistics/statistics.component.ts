@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';  
-import { Chart } from './chart.model';
 import { DataService } from 'app/services/data.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-top-articles',
-  templateUrl: './top-articles.component.html',
-  styleUrls: ['./top-articles.component.css']
+  selector: 'statistics',
+  templateUrl: './statistics.component.html',
+  styleUrls: ['./statistics.component.css']
 })
-export class TopArticlesComponent implements OnInit{  
+export class StatisticsComponent implements OnInit{  
   nIndustrial:number;
   nInformatica:number;
   nContaduria:number;
@@ -109,8 +108,4 @@ export class TopArticlesComponent implements OnInit{
         error => console.log(error)
         );
       }
-
-
-
-
 }

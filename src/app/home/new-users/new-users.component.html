@@ -1,0 +1,90 @@
+<div class="component">
+  <div class="component-title">
+    <h5 class=center-align>Registro de entradas y salidas <i class="small material-icons amber-text">swap_vertical_circle</i>
+            </h5>
+  </div>
+  <div class="component-body">
+
+
+    <div class="row total-users center-align">
+      <div class="col l6">
+        <p>Total Este mes: <span>{{ totalMonth }}</span></p>
+        
+      </div>
+      <div class="col l6">
+        <p>Total última hora <span> {{ totalHour }}</span></p>
+      </div>
+    </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s6"><a class ="active" href="#personas">Registro de personas</a></li>
+        <li class="tab col s6"><a href="#vehiculos">Registro de vehículos</a></li>
+        <div class="indicator amber" style="z-index:1"></div>
+      </ul>
+    </div>
+
+  </div>
+
+  <div id="vehiculos">
+<div class="container">
+<input
+        type='text'
+        placeholder='Filtrar por placa'
+        (keyup)='updateFilter($event)'
+      />
+      <ngx-datatable #table class="material"
+        [columns]="columns"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="'auto'"
+        [limit]="8"
+        [rows]='rows'>
+        <ngx-datatable-column name="Matricula" class="blue-gray-text" [prop]="'mtrAuto'"></ngx-datatable-column>
+        <ngx-datatable-column name="Operación" [prop]="'op'"></ngx-datatable-column>
+        <ngx-datatable-column name="Día"[prop]="'day'"></ngx-datatable-column>
+        <ngx-datatable-column name="Mes"[prop]="'month'"></ngx-datatable-column>
+        <ngx-datatable-column name="Hora"[prop]="'hora'"></ngx-datatable-column>
+      </ngx-datatable>
+
+    </div>
+    </div>
+
+
+    <div id="personas">
+<div class="container">
+<input
+        type='text'
+        placeholder='Filtrar por Cedula'
+        (keyup)='updateFilter($event)'
+      />
+      <ngx-datatable #table class="material"
+        [columns]="columns"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="'auto'"
+        [limit]="8"
+        [rows]='logs'>
+        <ngx-datatable-column name="Cedula" class="blue-gray-text" [prop]="'CI'"></ngx-datatable-column>
+        <ngx-datatable-column name="Operación" [prop]="'op'"></ngx-datatable-column>
+        <ngx-datatable-column name="Día"[prop]="'day'"></ngx-datatable-column>
+        <ngx-datatable-column name="Mes"[prop]="'month'"></ngx-datatable-column>
+        <ngx-datatable-column name="Hora"[prop]="'hora'"></ngx-datatable-column>
+      </ngx-datatable>
+
+    </div>
+    </div>
+
+
+
+   
+
+  </div>
+      
+
+   </div>
+

@@ -1,91 +1,12 @@
 /* Responsive Full Background Image Using CSS
  * Tutorial URL: http://sixrevisions.com/css/responsive-background-image/
 */
-.bodyt {
-  /* Location of the image */
-  background-image: url(http://wallpapercave.com/wp/9slIOm9.jpg);
-  
-  /* Image is centered vertically and horizontally at all times */
-  background-position: center center;
-  
-  /* Image doesn't repeat */
-  background-repeat: no-repeat;
-  
-  /* Makes the image fixed in the viewport so that it doesn't move when 
-     the content height is greater than the image height */
-  background-attachment: fixed;
-  
-  /* This is what makes the background image rescale based on its container's size */
-  background-size: cover;
-  
-  /* Pick a solid background color that will be displayed while the background image is loading */
-  background-color:#464646;
-  
-  /* SHORTHAND CSS NOTATION
-   * background: url(background-photo.jpg) center center cover no-repeat fixed;
-   */
-}
-
-/* For mobile devices */
-@media only screen and (max-width: 767px) {
-  .bodyt {
-    /* The file size of this background image is 93% smaller
-     * to improve page load speed on mobile internet connections */
-    background-image: url(http://wallpapercave.com/wp/9slIOm9.jpg);
-  }
-  }
 
 .white {
     background-color: #FFFFFFE6 !important;
 }
 
 
-  /* label color */
-   .input-field label {
-     color: #212121;
-   }
-   /* label focus color */
-   .input-field input[type=text]:focus + label {
-     color: #212121;
-   }
-   /* label underline focus color */
-   .input-field input[type=text]:focus {
-     border-bottom: 1px solid #607d8b;
-     box-shadow: 0 1px 0 0 #212121;
-   }
-   /* valid color */
-   .input-field input[type=text].valid {
-     border-bottom: 1px solid #607d8b;
-     box-shadow: 0 1px 0 0 #212121;
-   }
-   /* invalid color */
-   .input-field input[type=text].invalid {
-     border-bottom: 1px solid #212121;
-     box-shadow: 0 1px 0 0 #d84315;
-   }
-
-   .input-field input[type=email]:focus + label {
-     color: #212121;
-   }
-   /* label underline focus color */
-   .input-field input[type=email]:focus {
-     border-bottom: 1px solid #607d8b;
-     box-shadow: 0 1px 0 0 #212121;
-   }
-   /* valid color */
-   .input-field input[type=email].valid {
-     border-bottom: 1px solid #607d8b;
-     box-shadow: 0 1px 0 0 #212121;
-   }
-   /* invalid color */
-   .input-field input[type=email].invalid {
-     border-bottom: 1px solid #212121;
-     box-shadow: 0 1px 0 0 #d84315;
-   }
-   /* icon prefix focus color */
-   .input-field .prefix.active {
-     color: #212121;
-   }
 
 .input-field textarea[class=materialize-textarea]:focus {
 border-bottom: 1px solid #212121;

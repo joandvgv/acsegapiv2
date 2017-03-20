@@ -7,19 +7,15 @@ import { routing } from './app.router';
 import { effects, store, instrumentation } from './store';
 import { SharedModule } from './shared/shared.module';
 import { WeatherService } from './weather/weather.service';
-
-
-
-
-
- console.log(instrumentation);
-
+import { DataService } from './services/data.service';
+import { ToastComponent } from './shared/toast/toast.component';
+import {NewUsersModule} from './home/new-users/new-users.module'
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,10 +25,12 @@ import { WeatherService } from './weather/weather.service';
     store,
     effects,
     routing,
-    instrumentation
+    instrumentation,
   ],
   providers: [
-    WeatherService
+    WeatherService,
+    DataService,
+    ToastComponent
   ],
    bootstrap: [
     AppComponent

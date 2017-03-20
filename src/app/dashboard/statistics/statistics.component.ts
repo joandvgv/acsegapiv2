@@ -12,12 +12,21 @@ export class StatisticsComponent implements OnInit{
   nInformatica:number;
   nContaduria:number;
   nFiscales:number;
+  nVehicleIndustrial:number;
+  nVehicleInformatica:number;
+  nVehicleContaduria:number;
+  nVehicleFiscales:number;
   percentIndustrial:String;
   percentInformatica:String;
   percentFiscales:String;
   percentContaduria:String;
   nTotalVehicles:number;
   nTotalPeople:number;
+  vehiclePercentIndustrial:String;
+  vehiclePercentInformatica:String;
+  vehiclePercentFiscales:String;
+  vehiclePercentContaduria:String;
+
 
 
   constructor (private dataService: DataService) {
@@ -36,6 +45,14 @@ export class StatisticsComponent implements OnInit{
     this.getPercentFiscales();
     this.getTotalPeople();
     this.getTotalVehicles();
+    this.getVehiclesIndustrial();
+    this.getVehiclesInformatica();
+    this.getVehiclesContaduria();
+    this.getVehiclesFiscales();
+    this.getVehiclePercentIndustrial();
+    this.getVehiclePercentInformatica();
+    this.getVehiclePercentContaduria();
+    this.getVehiclePercentFiscales();
   }
 
 
@@ -95,6 +112,34 @@ export class StatisticsComponent implements OnInit{
         );
       }
 
+       getVehiclesInformatica(){
+      this.dataService.getVehiclesInformatica().subscribe(
+        data => this.nVehicleInformatica = data,
+        error => console.log(error)
+        );
+      }
+
+       getVehiclesContaduria(){
+      this.dataService.getVehiclesContaduria().subscribe(
+        data => this.nVehicleContaduria = data,
+        error => console.log(error)
+        );
+      }
+
+      getVehiclesFiscales(){
+      this.dataService.getVehiclesFiscales().subscribe(
+        data => this.nVehicleFiscales = data,
+        error => console.log(error)
+        );
+      }
+
+       getVehiclesIndustrial(){
+      this.dataService.getVehiclesIndustrial().subscribe(
+        data => this.nVehicleIndustrial = data,
+        error => console.log(error)
+        );
+      }
+
        getTotalVehicles(){
       this.dataService.getTotalVehicles().subscribe(
         data => this.nTotalVehicles = data,
@@ -105,6 +150,35 @@ export class StatisticsComponent implements OnInit{
        getTotalPeople(){
       this.dataService.getTotalPeople().subscribe(
         data => this.nTotalPeople = data,
+        error => console.log(error)
+        );
+      }
+
+
+    getVehiclePercentIndustrial(){
+      this.dataService.getVehiclePercentIndustrial().subscribe(
+        data => this.vehiclePercentIndustrial = data,
+        error => console.log(error)
+        );
+      }
+
+       getVehiclePercentInformatica(){
+      this.dataService.getVehiclePercentInformatica().subscribe(
+        data => this.vehiclePercentInformatica = data,
+        error => console.log(error)
+        );
+      }
+
+       getVehiclePercentContaduria(){
+      this.dataService.getVehiclePercentContaduria().subscribe(
+        data => this.vehiclePercentContaduria = data,
+        error => console.log(error)
+        );
+      }
+
+       getVehiclePercentFiscales(){
+      this.dataService.getVehiclePercentFiscales().subscribe(
+        data => this.vehiclePercentFiscales = data,
         error => console.log(error)
         );
       }

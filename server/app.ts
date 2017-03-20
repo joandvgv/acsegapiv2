@@ -8,6 +8,7 @@ import * as User from './models/users';
 import * as People from './models/people';
 import * as Logs from './models/logs';
 import * as LogsP from './models/logsP';
+import * as Vehicles from './models/vehicles';
 
 
 import { loginRouter } from './routes/login';
@@ -58,6 +59,9 @@ app.get('/api/user', function (req, res) {
     });
 });
 
+
+
+
   // count all
   app.get('/api/logs/month', function(req, res) {
    date = new Date().getMonth();
@@ -99,6 +103,25 @@ app.get('/api/user/:username', function (req, res) {
         }
     });
 });
+
+/* Find one */
+app.get('/api/persona/:cedula', function (req, res) {
+    var query = { CI: req.params.cedula, enCampus: true};
+    People.findOne(query, function(err, User) {
+        if (err) {
+            res.json({info: 'error during find persona', error: err});
+        };
+        if (User) {
+            res.json({info: 'User found successfully', data: User});
+        } else {
+            res.json({info: 'User not found with name:'+ req.params.cedula});
+        }
+    });
+});
+
+
+
+
 
 
 /* Find one */
@@ -182,7 +205,15 @@ app.get('/api/logs/vehiculo', function (req, res) {
     });
   });
 
-   app.get('/api/statistics/pcarrerap/:carrera', function(req, res) {
+  app.get('/api/statistics/pcarrera/:carrera', function(req, res) {
+   var query = {carrera: req.params.carrera, enCampus: true};
+    People.count(query,function(err, count) {
+      if(err) return console.error(err);
+      res.json(count);
+    });
+  });
+
+     app.get('/api/statistics/pcarrerap/:carrera', function(req, res) {
    var query = {carrera: req.params.carrera, enCampus: true};
     People.count(query,function(err, count) {
       if(err) return console.error(err);
@@ -197,15 +228,36 @@ app.get('/api/logs/vehiculo', function (req, res) {
   });
 
 
+     app.get('/api/statistics/vcarrerap/:carrera', function(req, res) {
+   var query = {carrera: req.params.carrera, "vehiculo.venCampus":true};
+    People.count(query,function(err, count) {
+      if(err) return console.error(err);
+      var query2= {"vehiculo.venCampus":true};
+      People.count(query2,function(error,total){
+         if(error) return console.error(err);
+         res.json(Math.round((count/total)*100) + "%");
+    });
+    });
+    
+          
+  });
 
-   app.get('/api/statistics/pcarrera/:carrera', function(req, res) {
-   var query = {carrera: req.params.carrera, enCampus:true};
+
+app.get('/api/statistics/vcarrera/:carrera', function(req, res) {
+   var query = {carrera: req.params.carrera, "vehiculo.venCampus":true};
     People.count(query,function(err, count) {
       if(err) return console.error(err);
       res.json(count);
     });
   });
 
+app.get('/api/statistics/onCampus/vehicles', function(req, res) {
+   var query = {"vehiculo.venCampus":true};
+    People.count(query,function(err, count) {
+      if(err) return console.error(err);
+      res.json(count);
+    });
+  });
 
 
   app.post('/api/authuser/', function (request, response) {

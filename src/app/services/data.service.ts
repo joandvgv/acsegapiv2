@@ -66,14 +66,49 @@ export class DataService implements CanActivate{
     return this.http.get('/api/statistics/pcarrerap/Informatica').map(res => res.json());
   }
 
+      getVehiclePercentIndustrial(): Observable<any> {
+    return this.http.get('/api/statistics/vcarrerap/Industrial').map(res => res.json());
+  }
+
+      getVehiclePercentFiscales(): Observable<any> {
+    return this.http.get('/api/statistics/vcarrerap/Cs.Fiscales').map(res => res.json());
+  }
+
+      getVehiclePercentContaduria(): Observable<any> {
+    return this.http.get('/api/statistics/vcarrerap/Contaduria').map(res => res.json());
+  }
+
+      getVehiclePercentInformatica(): Observable<any> {
+    return this.http.get('/api/statistics/vcarrerap/Informatica').map(res => res.json());
+  }
+
+
      getTotalVehicles(): Observable<any> {
-    return this.http.get('/api/onCampus/count').map(res => res.json());
+    return this.http.get('/api/statistics/onCampus/vehicles').map(res => res.json());
   }
 
 
      getTotalPeople(): Observable<any> {
     return this.http.get('/api/onCampus/count').map(res => res.json());
   }
+
+    getVehiclesInformatica(){
+      return this.http.get('/api/statistics/vcarrera/Informatica').map(res => res.json());
+
+    }
+
+    getVehiclesContaduria(){
+      return this.http.get('/api/statistics/vcarrera/Contaduria').map(res => res.json());
+    }
+
+    getVehiclesFiscales(){
+      return this.http.get('/api/statistics/vcarrera/Cs.Fiscales').map(res => res.json());
+    }
+
+     getVehiclesIndustrial(){
+      return this.http.get('/api/statistics/vcarrera/Industrial').map(res => res.json());
+    }
+
 
     login(username: string, password: string) {
         return this.http.post('/api/authuser', { username: username, password: password })

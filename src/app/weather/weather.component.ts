@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Http } from '@angular/http';
 import { DataService } from '../services/data.service';
 import { ToastComponent } from '../shared/toast/toast.component';
+import { Router } from '@angular/router';
 
 
 declare var $: any;
@@ -26,7 +27,8 @@ export class WeatherComponent implements OnInit {
   constructor(private http: Http,
               private dataService: DataService,
               public toast: ToastComponent,
-              private formBuilder: FormBuilder) {}
+              private formBuilder: FormBuilder
+              private router: Router) {}
 
   ngOnInit(): void {
 
@@ -44,7 +46,7 @@ login() {
         this.dataService.login(this.loginForm.value.username, this.loginForm.value.password)
             .subscribe(
                 data => {
-                 //   this.router.navigate([this.returnUrl]);
+                   this.router.navigate(['/dashboard']
                 },
                 error => {
                     this.loading = false;

@@ -58,6 +58,7 @@
     "jquery": "^2.2.4",
     "jsonwebtoken": "^5.7.0",
     "materialize-css": "^0.97.8",
+    "mongoose": "^4.9.1",
     "ngrx-store-freeze": "^0.1.6",
     "node-uuid": "^1.4.7",
     "normalize.css": "^5.0.0",

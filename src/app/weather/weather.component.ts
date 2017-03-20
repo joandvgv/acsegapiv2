@@ -46,7 +46,7 @@ login() {
         this.dataService.login(this.loginForm.value.username, this.loginForm.value.password)
             .subscribe(
                 data => {
-                   this.router.navigate(['/dashboard'])
+                   this.router.navigate(['/home'])
                 },
                 error => {
                     this.loading = false;

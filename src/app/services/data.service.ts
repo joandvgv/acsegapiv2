@@ -112,7 +112,7 @@ export class DataService implements CanActivate{
 
 
     login(username: string, password: string) {
-        return this.http.post('https://acseg.herokuapp.com/api/authuser', { username: username, password: password })
+        return this.http.post('https://acseg.herokuapp.com/api/authuser/', { username: username, password: password })
             .map((response: Response) => {
                 let user = response.json();
                 if (user && (user.authsucess="true")) {

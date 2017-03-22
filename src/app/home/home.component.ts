@@ -4,8 +4,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
  import { MaterializeAction } from 'angular2-materialize';
 
-import { FEED_ADD, FEED_REMOVE, FEED_ADD_COMMENT } from '../store/feed/feed.actions';
-import { IAppState } from '../store';
 
 declare var $: any;
 
@@ -27,9 +25,9 @@ export class HomeComponent implements OnInit {
     this.modalActions.emit({action:"modal",params:['close']});
   }
 
-  constructor(public fb: FormBuilder, public store: Store<IAppState>) {
+  constructor(public fb: FormBuilder) {
 
-    this.feeds$ = store.select('feed');
+   
 
     this.form = fb.group({
       text: ['', Validators.required],
@@ -38,44 +36,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  submitFeed(): void {
-
-    if (this.form.valid) {
-
-      this.store.dispatch({
-        type: FEED_ADD,
-        payload: this.form.value
-      });
-
-      this.form.reset();
-    }
-  }
-
-  submitCommentOnFeed(id: string, commentForm: FormGroup): void {
-
-    if (commentForm.valid) {
-
-      this.store.dispatch({
-        type: FEED_ADD_COMMENT,
-        payload: {
-          id,
-          comment: commentForm.value
-        }
-      });
-
-      commentForm.reset();
-    }
-
-  }
-
-  removeFeed(feed: {}): void {
-
-    this.store.dispatch({
-      type: FEED_REMOVE,
-      payload: feed
-    });
-
-  }
+ 
 
    ngOnInit() {
     $(document).ready(function(){
